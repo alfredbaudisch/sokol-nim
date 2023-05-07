@@ -61,3 +61,27 @@ nimble build_all
 nimble -d:gl build_debug
 nimble -d:gl build_all
 ```
+
+### Emscripten
+
+Currently only the "cube" and "clear" examples works for WebAssembly.
+
+The compiled shaders of the other examples must be updated for GLES3 before they work for WebAssembly, example:
+
+```sh
+sokol-shdc -i examples/shaders/cube.glsl -o examples/shaders/cube.nim -l glsl330:metal_macos:hlsl4:glsl300es -f sokol_nim
+```
+
+To compile run:
+
+```sh
+nim c -d:emscripten examples/cube
+```
+
+Then open `examples/index.html` from a webserver, example:
+
+```sh
+cd examples
+python -m http.server
+# go to localhost:8000
+```
