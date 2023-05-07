@@ -1,4 +1,6 @@
 .vscode/
 nimcache/
 build/
-
+examples/*.wasm
+examples/*.js
+examples/index.html
