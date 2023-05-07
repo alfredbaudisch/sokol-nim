@@ -624,7 +624,10 @@ proc c_androidGetNativeActivity():pointer {.cdecl, importc:"sapp_android_get_nat
 proc androidGetNativeActivity*():pointer =
     c_androidGetNativeActivity()
 
-when defined windows:
+when defined emscripten:
+  {.passc:"-DSOKOL_GLES3".}
+  {.passl:"-lGL -ldl".}
+elif defined windows:
   when not defined vcc:
     {.passl:"-lkernel32 -luser32 -lshell32 -lgdi32".}
   when defined gl:
